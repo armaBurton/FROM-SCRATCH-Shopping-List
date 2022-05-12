@@ -1,0 +1,43 @@
+.header {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  background-color: orange;
+  color: var(--dark-blue);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+}
+
+.counter {
+  height: 35px;
+  background-color: var(--dark-blue);
+  margin: 0 10px;
+  padding: 0 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: orange;
+}
+
+.clearCart {
+  cursor: pointer;
+}
+
+.clearCart:hover {
+  color: blueviolet;
+}
+
+.clearCart:active {
+  color: cyan;
+}

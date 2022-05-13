@@ -1,22 +1,46 @@
 import { createContext, useContext, useReducer, useState } from 'react';
 
 const initialGroceries = [
-  { id: Date.now(), item: 'Hotdog', done: false },
-  { id: Date.now(), item: 'Hamburger', done: false },
-  { id: Date.now(), item: 'Pizza', done: false },
+  { id: Math.floor(Math.random() * 999999999), item: 'Hotdog', done: false },
+  { id: Math.floor(Math.random() * 999999999), item: 'Hamburger', done: false },
+  { id: Math.floor(Math.random() * 999999999), item: 'Pizza', done: false },
 ];
+
+const createId = (action) => {
+  return Math.floor(Math.random() * 999999999) + action.payload.item;
+};
 
 const groceryReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_GROCERY':
       return [
-        { id: Date.now(), item: action.payload.item, done: false },
+        {
+          id: createId(action),
+          item: action.payload.item,
+          done: false,
+        },
         ...state,
       ];
     case 'UPDATE_GROCERY':
-      return;
+      return state.map((g) => {
+        console.log(
+          `|| g.id, action.payload.update.id >`,
+          g.id,
+          action.payload.update.id
+        );
+        if (g.id === action.payload.update.id) {
+          const { done, item } = action.payload.update;
+          return {
+            ...g,
+            done,
+            item,
+          };
+        }
+        return g;
+      });
     case 'DELETE_GROCERY':
-      return;
+      console.log(`|| action >`, action);
+      return state.filter((g) => g.id !== action.payload.id);
     case 'RESET':
       state = [];
       return [...state];
@@ -51,6 +75,14 @@ export const GroceryProvider = ({ children }) => {
     });
   };
 
+  const handleUpdate = (update) => {
+    dispatch({ type: 'UPDATE_GROCERY', payload: { update } });
+  };
+
+  const handleDelete = (id) => {
+    dispatch({ type: 'DELETE_GROCERY', payload: { id } });
+  };
+
   return (
     <GroceryContext.Provider
       value={{
@@ -59,6 +91,8 @@ export const GroceryProvider = ({ children }) => {
         handleReset,
         newGrocery,
         setNewGrocery,
+        handleUpdate,
+        handleDelete,
       }}
     >
       {children}

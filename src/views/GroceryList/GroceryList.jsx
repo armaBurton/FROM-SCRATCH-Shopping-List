@@ -4,8 +4,14 @@ import { useGroceries } from '../../context/GroceryProvider';
 import GroceryItem from '../GroceryItem/GroceryItem';
 
 export default function GroceryList() {
-  const { groceries, handleAddGroceryItem, newGrocery, setNewGrocery } =
-    useGroceries();
+  const {
+    groceries,
+    handleAddGroceryItem,
+    newGrocery,
+    setNewGrocery,
+    handleUpdate,
+    handleDelete,
+  } = useGroceries();
 
   return (
     <section className={style.listHolder}>
@@ -25,7 +31,11 @@ export default function GroceryList() {
           groceries.map((g) => {
             return (
               <li key={`${g.id}${g.item}`}>
-                <GroceryItem g={g} onChange={() => {}} onDelete={() => {}} />
+                <GroceryItem
+                  g={g}
+                  onUpdate={handleUpdate}
+                  onDelete={handleDelete}
+                />
               </li>
             );
           })

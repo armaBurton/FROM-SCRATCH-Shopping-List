@@ -25,7 +25,7 @@ export default function GroceryItem({ g, onUpdate, onDelete }) {
       <button className={`${style.edit} ${style.button}`}>edit</button>
       <button
         className={`${style.delete} ${style.button}`}
-        onClick={() => onDelete(g.id)}
+        onClick={() => onDelete(g)}
       >
         delete
       </button>

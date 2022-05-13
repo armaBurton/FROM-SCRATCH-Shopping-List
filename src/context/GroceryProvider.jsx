@@ -79,7 +79,9 @@ export const GroceryProvider = ({ children }) => {
     dispatch({ type: 'UPDATE_GROCERY', payload: { update } });
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (g) => {
+    if (!g.done) return;
+    const id = g.id;
     dispatch({ type: 'DELETE_GROCERY', payload: { id } });
   };
 

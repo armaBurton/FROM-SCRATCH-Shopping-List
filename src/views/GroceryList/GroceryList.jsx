@@ -1,8 +1,11 @@
 import style from './GroceryList.css';
 import { useState } from 'react';
+import { useGroceries } from '../../context/GroceryProvider';
+import GroceryItem from '../GroceryItem/GroceryItem';
 
 export default function GroceryList() {
-  const [newGrocery, setNewGrocery] = useState('');
+  const { groceries, handleAddGroceryItem, newGrocery, setNewGrocery } =
+    useGroceries();
 
   return (
     <section className={style.listHolder}>
@@ -22,14 +25,7 @@ export default function GroceryList() {
           groceries.map((g) => {
             return (
               <li key={`${g.id}${g.item}`}>
-                <input type="checkbox" checked={g.done} onChange={(e) => {}} />
-                <p className={style.listItem}>{g.item}</p>
-                <button className={`${style.edit} ${style.button}`}>
-                  edit
-                </button>
-                <button className={`${style.delete} ${style.button}`}>
-                  delete
-                </button>
+                <GroceryItem g={g} onChange={() => {}} onDelete={() => {}} />
               </li>
             );
           })

@@ -2,7 +2,7 @@ import style from './Header.css';
 import { useGroceries } from '../../context/GroceryProvider';
 
 export default function Header() {
-  const { groceries } = useGroceries();
+  const { groceries, handleReset } = useGroceries();
 
   return (
     <>

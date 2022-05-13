@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
 
 const initialGroceries = [
   { id: Date.now(), item: 'Hotdog', done: false },
@@ -29,14 +29,19 @@ const GroceryContext = createContext();
 
 export const GroceryProvider = ({ children }) => {
   const [groceries, dispatch] = useReducer(groceryReducer, initialGroceries);
+  const [newGrocery, setNewGrocery] = useState('');
 
   const handleAddGroceryItem = (e) => {
     e.preventDefault();
-    dispatch({
-      type: 'ADD_GROCERY',
-      payload: { item: newGrocery },
-    });
-    setNewGrocery('');
+    if (newGrocery === '') {
+      return;
+    } else {
+      dispatch({
+        type: 'ADD_GROCERY',
+        payload: { item: newGrocery },
+      });
+      setNewGrocery('');
+    }
   };
 
   const handleReset = (e) => {
@@ -48,7 +53,13 @@ export const GroceryProvider = ({ children }) => {
 
   return (
     <GroceryContext.Provider
-      value={{ groceries, handleAddGroceryItem, handleReset }}
+      value={{
+        groceries,
+        handleAddGroceryItem,
+        handleReset,
+        newGrocery,
+        setNewGrocery,
+      }}
     >
       {children}
     </GroceryContext.Provider>
@@ -60,4 +71,6 @@ export const useGroceries = () => {
 
   if (context === undefined)
     throw new Error('useGroceries must be called withing a GroceryProvider');
+
+  return context;
 };

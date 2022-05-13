@@ -27,17 +27,21 @@ export default function GroceryList() {
       <ul className={style.groceryList}>
         {
           //change initial groceries later to state
-          groceries.map((g) => {
-            return (
-              <li key={g.id}>
-                <GroceryItem
-                  g={g}
-                  onUpdate={handleUpdate}
-                  onDelete={handleDelete}
-                />
-              </li>
-            );
-          })
+          groceries === null ? (
+            <></>
+          ) : (
+            groceries.map((g) => {
+              return (
+                <li key={g.id}>
+                  <GroceryItem
+                    g={g}
+                    onUpdate={handleUpdate}
+                    onDelete={handleDelete}
+                  />
+                </li>
+              );
+            })
+          )
         }
       </ul>
     </section>

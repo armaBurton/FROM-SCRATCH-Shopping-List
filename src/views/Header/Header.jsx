@@ -10,7 +10,9 @@ export default function Header() {
         <h1>Shopping List</h1>
         <div className={style.navRight}>
           <p>Total items:</p>
-          <div className={style.counter}>{groceries.length}</div>
+          <div className={style.counter}>
+            {groceries === null ? 0 : groceries.length}
+          </div>
           <p className={style.clearCart} onClick={handleReset}>
             Clear Carts
           </p>

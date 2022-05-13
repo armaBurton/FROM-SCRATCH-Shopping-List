@@ -62,13 +62,6 @@ export default function GroceryItem({ g, onUpdate, onDelete }) {
           });
         }}
       />
-      {/* <p
-        className={style.listItem}
-        style={{ textDecoration: g.done ? 'line-through' : null }}
-      >
-        {g.item}
-      </p>
-      <button className={`${style.edit} ${style.button}`}>edit</button> */}
       {listItem}
       <button
         className={`${style.delete} ${style.button}`}

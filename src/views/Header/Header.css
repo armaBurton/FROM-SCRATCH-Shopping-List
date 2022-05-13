@@ -35,9 +35,113 @@
 }
 
 .clearCart:hover {
-  color: blueviolet;
+  color: red;
 }
 
 .clearCart:active {
-  color: cyan;
+  color: yellow;
+}
+
+/* grocerylist css */
+
+.listHolder {
+  padding-top: 100px;
+  width: 900px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addItemInput {
+  width: 450px;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 1.75rem;
+}
+
+.addItemButton {
+  height: 50px;
+  margin-left: 20px;
+  padding: 8px 10px;
+  font-size: 1.25rem;
+  background-color: orange;
+  color: var(--dark-blue);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addItemButton:hover {
+  background-color: yellow;
+}
+
+.addItemButton:active {
+  background-color: orangered;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+}
+
+ul {
+  margin-top: 50px;
+}
+
+li {
+  display: flex;
+  color: orange;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: baseline;
+}
+
+.listItem {
+  min-width: 400px;
+}
+
+li {
+  /* border-top: 1px dotted orange; */
+  padding: 5px, 20px;
+  border-radius: 5px;
+}
+
+li:nth-child(odd) {
+  background-color: blueviolet;
+}
+
+.edit {
+  background-color: green;
+  color: orange;
+}
+
+.edit:hover {
+  background-color: #006400;
+  color: orange;
+}
+
+.edit:active {
+  background-color: lightgreen;
+  color: var(--dark-blue);
+}
+
+.delete {
+  background-color: red;
+  color: orange;
+}
+
+.delete:hover {
+  background-color: darkred;
+  color: orange;
+}
+
+.delete:active {
+  background-color: coral;
+  color: var(--dark-blue);
+}
+
+.button {
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 5px;
 }

@@ -1,5 +1,4 @@
 import style from './GroceryList.css';
-import { useState } from 'react';
 import { useGroceries } from '../../context/GroceryProvider';
 import GroceryItem from '../GroceryItem/GroceryItem';
 

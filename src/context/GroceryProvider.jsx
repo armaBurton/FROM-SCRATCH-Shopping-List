@@ -1,10 +1,10 @@
-import { createContext, useContext, useReducer, useState } from 'react';
-
-const initialGroceries = [
-  { id: Math.floor(Math.random() * 999999999), item: 'Hotdog', done: false },
-  { id: Math.floor(Math.random() * 999999999), item: 'Hamburger', done: false },
-  { id: Math.floor(Math.random() * 999999999), item: 'Pizza', done: false },
-];
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 
 const createId = (action) => {
   return Math.floor(Math.random() * 999999999) + action.payload.item;
@@ -13,6 +13,15 @@ const createId = (action) => {
 const groceryReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_GROCERY':
+      const storage = [
+        { id: createId(action), item: action.payload.item, done: false },
+        ...state,
+      ];
+
+      localStorage.setItem('gList', JSON.stringify([...storage]));
+
+      let getStorage = localStorage.getItem('gList');
+      console.log(`|| getStorage >`, JSON.parse(getStorage));
       return [
         {
           id: createId(action),
@@ -22,7 +31,7 @@ const groceryReducer = (state, action) => {
         ...state,
       ];
     case 'UPDATE_GROCERY':
-      return state.map((g) => {
+      const updateList = state.map((g) => {
         console.log(
           `|| g.id, action.payload.update.id >`,
           g.id,
@@ -38,10 +47,19 @@ const groceryReducer = (state, action) => {
         }
         return g;
       });
+      localStorage.setItem('gList', JSON.stringify([...updateList]));
+
+      return updateList;
     case 'DELETE_GROCERY':
-      return state.filter((g) => g.id !== action.payload.id);
+      const update = state.filter((g) => g.id !== action.payload.id);
+      console.log(`|| update >`, update);
+      localStorage.setItem('glist', JSON.stringify([...update]));
+      return update;
+    // return state.filter((g) => g.id !== action.payload.id);
     case 'RESET':
       state = [];
+      localStorage.clear();
+      localStorage.setItem('glist', JSON.stringify([...state]));
       return [...state];
     default:
       throw new Error(`Action type ${action.type} is not supported.`);
@@ -51,7 +69,10 @@ const groceryReducer = (state, action) => {
 const GroceryContext = createContext();
 
 export const GroceryProvider = ({ children }) => {
-  const [groceries, dispatch] = useReducer(groceryReducer, initialGroceries);
+  const [groceries, dispatch] = useReducer(
+    groceryReducer,
+    JSON.parse(localStorage.getItem('gList'))
+  );
   const [newGrocery, setNewGrocery] = useState('');
 
   const handleAddGroceryItem = (e) => {

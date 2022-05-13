@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
 
 const createId = (action) => {
   return Math.floor(Math.random() * 999999999) + action.payload.item;
@@ -49,10 +43,7 @@ const groceryReducer = (state, action) => {
       return updateList;
 
     case 'DELETE_GROCERY':
-      console.log(`|| state >`, state);
       const update = state.filter((g) => g.id !== action.payload.id);
-
-      console.log(`|| update >`, update);
 
       localStorage.setItem('gList', JSON.stringify([...update]));
 
@@ -60,9 +51,12 @@ const groceryReducer = (state, action) => {
 
     case 'RESET':
       state = [];
+
       localStorage.clear();
       localStorage.setItem('gList', JSON.stringify([...state]));
+
       return [...state];
+
     default:
       throw new Error(`Action type ${action.type} is not supported.`);
   }

@@ -54,6 +54,15 @@ li {
   min-width: 400px;
 }
 
+.formItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editInput {
+  width: 410px;
+}
+
 li {
   /* border-top: 1px dotted orange; */
   padding: 5px;
@@ -61,21 +70,6 @@ li {
 
 li:nth-child(odd) {
   background-color: blueviolet;
-}
-
-.edit {
-  background-color: green;
-  color: orange;
-}
-
-.edit:hover {
-  background-color: #006400;
-  color: orange;
-}
-
-.edit:active {
-  background-color: lightgreen;
-  color: var(--dark-blue);
 }
 
 .delete {
@@ -97,4 +91,21 @@ li:nth-child(odd) {
   cursor: pointer;
   padding: 3px 5px;
   border-radius: 5px;
+}
+
+.edit {
+  background-color: green;
+  color: orange;
+  width: 35px;
+  text-align: center;
+}
+
+.edit:hover {
+  background-color: #006400;
+  color: orange;
+}
+
+.edit:active {
+  background-color: lightgreen;
+  color: var(--dark-blue);
 }

@@ -30,7 +30,7 @@ export default function GroceryList() {
           //change initial groceries later to state
           groceries.map((g) => {
             return (
-              <li key={`${g.id}${g.item}`}>
+              <li key={g.id}>
                 <GroceryItem
                   g={g}
                   onUpdate={handleUpdate}

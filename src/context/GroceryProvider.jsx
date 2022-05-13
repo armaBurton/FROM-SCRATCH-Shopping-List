@@ -39,7 +39,6 @@ const groceryReducer = (state, action) => {
         return g;
       });
     case 'DELETE_GROCERY':
-      console.log(`|| action >`, action);
       return state.filter((g) => g.id !== action.payload.id);
     case 'RESET':
       state = [];

@@ -17,6 +17,7 @@ export default function GroceryItem({ g, onUpdate, onDelete }) {
       >
         <input
           className={style.editInput}
+          aria-label="list-item"
           value={g.item}
           onChange={(e) => {
             console.log(e.target.value);

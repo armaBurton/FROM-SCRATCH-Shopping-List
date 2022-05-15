@@ -10,7 +10,7 @@ export default function Header() {
         <h1>Shopping List</h1>
         <div className={style.navRight}>
           <p>Total items:</p>
-          <div className={style.counter}>
+          <div className={style.counter} aria-label="list-counter">
             {groceries === null ? 0 : groceries.length}
           </div>
           <p className={style.clearCart} onClick={handleReset}>
